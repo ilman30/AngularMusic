@@ -1,0 +1,25 @@
+<br><br>
+<div class="row">
+    <div class="col-md-12">
+        <section class="my-5">
+            <form [formGroup]="addGenreForm" (ngSubmit)="simpanGenre()">
+                <div class="form-group">
+                    <label for="kode">ID Genre :</label>
+                    <input type="text" class="form-control" id="id" formControlName="idGenre" placeholder="ID">
+                    <span *ngIf="!addGenreForm.get('idGenre').valid && addGenreForm.get('idGenre').touched" class="help-block">
+                    ID Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama Genre :</label>
+                    <input type="text" class="form-control" id="nama" formControlName="namaGenre" placeholder="nama">
+                    <span
+                        *ngIf="!addGenreForm.get('namaGenre').valid && addGenreForm.get('namaGenre').touched" class="help-block">
+                    Nama Wajib Diisi
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </section>
+    </div>
+</div>

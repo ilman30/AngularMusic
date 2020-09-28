@@ -1,0 +1,57 @@
+<br><br>
+<div class="row">
+    <div class="col-md-12">
+        <section class="my-5">
+            <form [formGroup]="addLablesRekamanForm" (ngSubmit)="simpanLables()">
+                <div class="form-group">
+                    <label for="kode">ID Label :</label>
+                    <input type="text" class="form-control" id="id" formControlName="idLabel" placeholder="ID">
+                    <span *ngIf="!addLablesRekamanForm.get('idLabel').valid && addLablesRekamanForm.get('idLabel').touched" class="help-block">
+                    ID Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama Label :</label>
+                    <input type="text" class="form-control" id="nama" formControlName="namaLabels" placeholder="nama">
+                    <span
+                        *ngIf="!addLablesRekamanForm.get('namaLabels').valid && addLablesRekamanForm.get('namaLabels').touched" class="help-block">
+                    Nama Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat :</label>
+                    <input type="text" class="form-control" id="alamat" formControlName="alamat" placeholder="alamat">
+                    <span
+                        *ngIf="!addLablesRekamanForm.get('alamat').valid && addLablesRekamanForm.get('alamat').touched" class="help-block">
+                    Alamat Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="no">No Telp :</label>
+                    <input type="text" class="form-control" id="noTelp" formControlName="noTelp" placeholder="no telp">
+                    <span
+                        *ngIf="!addLablesRekamanForm.get('noTelp').valid && addLablesRekamanForm.get('noTelp').touched" class="help-block">
+                    No Telp Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="cp">Contact Person :</label>
+                    <input type="text" class="form-control" id="contactPerson" formControlName="contactPerson" placeholder="contact person">
+                    <span
+                        *ngIf="!addLablesRekamanForm.get('contactPerson').valid && addLablesRekamanForm.get('contactPerson').touched" class="help-block">
+                    Contact Person Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="url">URL Website :</label>
+                    <input type="text" class="form-control" id="urlWebsite" formControlName="urlWebsite" placeholder="url website">
+                    <span
+                        *ngIf="!addLablesRekamanForm.get('urlWebsite').valid && addLablesRekamanForm.get('urlWebsite').touched" class="help-block">
+                    URL Website Wajib Diisi
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<br><br>
+<div class="row">
+    <div class="col-md-12">
+        <section class="my-5">
+            <form [formGroup]="addAlbumsForm" (ngSubmit)="simpanAlbums()">
+                <div class="form-group">
+                    <label for="kode">ID Albums :</label>
+                    <input type="text" class="form-control" id="id" formControlName="idAlbums" placeholder="ID">
+                    <span *ngIf="!addAlbumsForm.get('idAlbums').valid && addAlbumsForm.get('idAlbums').touched" class="help-block">
+                    ID Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="kode">Nama Albums :</label>
+                    <input type="text" class="form-control" id="id" formControlName="namaAlbums" placeholder="Nama Albums">
+                    <span *ngIf="!addAlbumsForm.get('namaAlbums').valid && addAlbumsForm.get('namaAlbums').touched" class="help-block">
+                    ID Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama Label:</label>
+                    <select class="form-control" formControlName="idLabel">
+                        <option *ngFor="let la of listLables" value="{{ la.idLabel }}">{{ la.namaLabels }}</option>
+                    </select>
+                    <span *ngIf="!addAlbumsForm.get('idLabel').valid && addAlbumsForm.get('idLabel').touched" class="help-block">
+                      Nama Wajib Diisi!
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama Artis:</label>
+                    <select class="form-control" formControlName="idArtis">
+                        <option *ngFor="let ar of listArtis" value="{{ ar.idArtis }}">{{ ar.namaArtis }}</option>
+                    </select>
+                    <span *ngIf="!addAlbumsForm.get('idArtis').valid && addAlbumsForm.get('idArtis').touched" class="help-block">
+                      Nama Wajib Diisi!
+                    </span>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="nama">URL Website :</label>
+                    <input type="text" class="form-control" id="nama" formControlName="urlWebsite" placeholder="nama">
+                    
+                </div> -->
+                <div class="form-group">
+                    <label for="nama">Keterangan :</label>
+                    <input type="text" class="form-control" id="nama" formControlName="keterangan" placeholder="nama">
+                    
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <input type="file" (change)="selectFile($event)">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </section>
+    </div>
+</div>
