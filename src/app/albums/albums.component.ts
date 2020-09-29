@@ -21,6 +21,7 @@ import { AlbumsService } from './albums.service';
     addAlbumsForm: FormGroup;
     listLables: LablesRekaman[];
     listArtis: Artis[];
+    alamatGambar: string;
 
     selectedFiles: FileList;
     currentFile: File;

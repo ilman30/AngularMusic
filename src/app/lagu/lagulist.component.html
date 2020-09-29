@@ -1,21 +1,33 @@
-<h3>Daftar Lagu</h3>
-<div class="row">
-    <form [formGroup]="cariForm">
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Nama Lagu</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" formControlName="namaLagu">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button (click)="rerender()" class="btn btn-primary">Cari</button>
-            </div>
-        </div>
-    </form>
-    <div class="col-md-12">
-        <table datatable [dtOptions]="dtOptions" class="cards table table-sm table-hover" style="width: 100%;">
-            
-        </table>
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1>Daftar Lagu</h1>
     </div>
-</div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+          
+        <div class="col-md-4" *ngFor="let la of listLagu" >
+          <div class="card mb-4 shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <b class="card-text">{{la.judul}}</b>
+              <br>
+              <p>Albums: {{la.namaAlbums}}</p>
+              <p>Artist: {{la.namaArtis}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

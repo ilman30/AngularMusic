@@ -29,6 +29,16 @@ export class LaguService{
         .pipe(map(data => data as Lagu));
     }
 
+    getLaguByAlbums(ids): Observable<Lagu[]> {
+        return this.httpKlien.get(environment.baseUrl +'/listlagujson/'+ids)
+        .pipe(map(data => data as Lagu[]));
+    }
+
+    getLaguByGenre(idx): Observable<Lagu[]> {
+        return this.httpKlien.get(environment.baseUrl +'/listlagubygenrejson/'+idx)
+        .pipe(map(data => data as Lagu[]));
+    }
+
     getListLaguAll(parameter: Map<string, any>, dataTablesParameters: any): Observable<DataTablesResponse> {
         const dtReq = new DataTablesRequest();
         dtReq.draw = dataTablesParameters.draw;

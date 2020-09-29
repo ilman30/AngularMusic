@@ -30,6 +30,12 @@ export class AlbumsService{
         .pipe(map(data => data as Albums));
     }
 
+    getAlbumsByArtis(ids): Observable<Albums[]> {
+        return this.httpKlien.get(environment.baseUrl +'/listalbumsjson/'+ids)
+        .pipe(map(data => data as Albums[]));
+    }
+
+
     getListAlbumsAll(parameter: Map<string, any>, dataTablesParameters: any): Observable<DataTablesResponse> {
         const dtReq = new DataTablesRequest();
         dtReq.draw = dataTablesParameters.draw;

@@ -23,8 +23,11 @@ const routes: Routes = [
   {path:"listgenre",component:GenreListComponent},
   {path:"addalbums",component:AlbumsComponent},
   {path:"listalbums",component:AlbumsListComponent},
+  {path:"listalbums/:ids",component:AlbumsListComponent},
   {path:"addlagu",component:LaguComponent},
-  {path:"listlagu",component:LaguListComponent}
+  {path:"listlagu",component:LaguListComponent},
+  {path:"listlagu/:ids",component:LaguListComponent},
+  {path:"listlagu/:idx",component:LaguListComponent}
 ];
 
 @NgModule({

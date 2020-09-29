@@ -16,6 +16,6 @@ export class Lagu{
     artis: Artis;
     namaArtis: string;
     album: Albums;
-    namaAlbum: string;
+    namaAlbums: string;
 
 }
