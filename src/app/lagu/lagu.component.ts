@@ -80,7 +80,7 @@ import { LaguService } from './lagu.service';
         this.addLaguForm.get('idAlbum').setValue(data.idAlbum);
         this.addLaguForm.get('fileLagu').setValue(data.fileLagu);
       }, error => {
-        alert('Data tidak ditemukan!');
+        console.log(error);
       });
     });
   }

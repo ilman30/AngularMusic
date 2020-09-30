@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Genre } from './genre';
 import { GenreService } from './genre.service';
 
@@ -54,14 +55,38 @@ export class GenreListComponent implements OnInit, OnDestroy {
         
     }
 
-    deleteGenre(data: Genre){
-        this.genreService.deleteGenre(data.idGenre).subscribe(response => {
-            console.group('Oke', data.idGenre, response)
-            if(response.status == 200){
-                this.router.navigate[('/listgenre')];
+    deleteGenre(id : number) {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false,
+        });
+        swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: 'You want to remove the Catalog!',
+          icon: 'warning',
+          // type: 'warning'
+          showCancelButton: true,
+          showCloseButton: true,
+          confirmButtonText: 'Yes, delete!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+        console.log(`Delete Data By Id:` + id );
+            if (result.value) {
+                this.genreService.deleteGenre(id).subscribe(data => {
+                    console.log(data);
+                    this.refresh();
+                });
             }
-        })
-    }
+        });
+      }
+
+      refresh(): void {
+        window.location.reload();
+      }
 
 
 }

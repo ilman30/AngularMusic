@@ -44,7 +44,7 @@ import { LablesRekamanService } from './lablesRekaman.service';
           this.addLablesRekamanForm.get('contactPerson').setValue(data.contactPerson);
           this.addLablesRekamanForm.get('urlWebsite').setValue(data.urlWebsite);
         }, error => {
-          alert('Data tidak ditemukan!');
+          console.log(error);
         });
       });
     }

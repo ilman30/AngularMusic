@@ -34,8 +34,15 @@ export class LaguListComponent implements OnInit, OnDestroy {
     constructor(private laguService: LaguService, 
                 private albumsService: AlbumsService,
                 private genreService: GenreService, 
-                private activateRoute: ActivatedRoute,){
+                private activateRoute: ActivatedRoute){
         
+        this.laguService.listLagu().subscribe((data)=>{
+                console.log(data);
+                this.listLagu=data;
+                }, error => {
+                    console.log(error);
+                })
+    
     }
 
     ngOnInit(): void{
@@ -68,7 +75,7 @@ export class LaguListComponent implements OnInit, OnDestroy {
         this.laguService.getLaguByAlbums(this.ids).subscribe( data => {
         this.listLagu = data;
         }, error => {
-            alert("data kosong");
+            console.log(error);
          });
         });
 
@@ -77,18 +84,9 @@ export class LaguListComponent implements OnInit, OnDestroy {
             this.laguService.getLaguByGenre(this.idx).subscribe( data => {
             this.listLagu = data;
             }, error => {
-                alert("data kosong");
+                console.log(error);
              });
             });
-
-        this.laguService.listLagu().subscribe((data)=>{
-            console.log(data);
-            this.listLagu=data;
-            }, error => {
-                console.log(error);
-            })
-        
-
     }
     ngOnDestroy(): void{
         this.dtTrigger.unsubscribe();

@@ -29,7 +29,12 @@ export class AlbumsListComponent implements OnInit, OnDestroy {
 
     constructor(private albumsService: AlbumsService, private artisService: ArtisService, private activateRoute: ActivatedRoute){
         
-
+        this.albumsService.listAlbums().subscribe((data)=>{
+            console.log(data);
+            this.listAlbums=data;
+            }, error => {
+                console.log(error);
+            })
     }
 
     ngOnInit(): void{
@@ -54,16 +59,11 @@ export class AlbumsListComponent implements OnInit, OnDestroy {
         this.albumsService.getAlbumsByArtis(this.ids).subscribe( data => {
         this.listAlbums = data;
         }, error => {
-            alert("data kosong");
+            console.log(error);
             });
         });
 
-        this.albumsService.listAlbums().subscribe((data)=>{
-            console.log(data);
-            this.listAlbums=data;
-            }, error => {
-                console.log(error);
-            })
+        
             
         
     }

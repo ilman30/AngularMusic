@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Genre } from './genre';
 import { GenreService } from './genre.service';
 
@@ -36,7 +37,7 @@ import { GenreService } from './genre.service';
             this.addGenreForm.get('idGenre').setValue(data.idGenre);
             this.addGenreForm.get('namaGenre').setValue(data.namaGenre);
           }, error => {
-            alert('Data tidak ditemukan!');
+            console.log(error);
           });
         });
       }
@@ -55,5 +56,7 @@ import { GenreService } from './genre.service';
       selectFile(event){
         this.selectedFiles = event.target.files;
       }
+
+      
 
   }

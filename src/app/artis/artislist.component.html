@@ -11,9 +11,10 @@
               
             <div class="col-md-4" *ngFor="let ar of listArtis" >
               <div class="card mb-4 shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                <img src="/api/image/{{ar.foto}}" alt="" height="200px">
                 <div class="card-body">
-                  <b class="card-text">{{ar.namaArtis}}</b>
+                  <b class="card-text">{{ar.namaArtis}}</b><br>
                   <br>
                   <!-- <p>Artist: {{ar.namaArtis}}</p> -->
                   <div class="d-flex justify-content-between align-items-center">

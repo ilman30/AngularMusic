@@ -42,18 +42,18 @@ import { ArtisService } from './artis.service';
             this.addArtisForm.get('urlWebsite').setValue(data.urlWebsite);
             this.addArtisForm.get('keterangan').setValue(data.keterangan);
           }, error => {
-            alert('Data tidak ditemukan!');
+            console.log(error);
           });
         });
       }
 
-      simpanArtis(): void{
-        this.upload();
+      simpanArtis(namaFile): void{
         console.log(this.addArtisForm.value);
         let art = new Artis();
         art.idArtis = this.addArtisForm.value.idArtis;
         art.namaArtis = this.addArtisForm.value.namaArtis;
         art.urlWebsite = this.addArtisForm.value.urlWebsite;
+        art.foto = namaFile;
         art.keterangan = this.addArtisForm.value.keterangan;
         this.artisService.insertArtis(art).subscribe((data) => {
           console.log(data);
@@ -75,6 +75,7 @@ import { ArtisService } from './artis.service';
               this.progress = Math.round( 100 * event.loaded / event.total);
             }else if (event instanceof HttpResponse) {
               console.log(event.body);
+              this.simpanArtis(event.body.namaFile);
             }
           },
           err => {
@@ -85,5 +86,7 @@ import { ArtisService } from './artis.service';
     
         this.selectedFiles = undefined;
       }
+
+      
 
   }

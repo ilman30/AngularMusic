@@ -47,8 +47,6 @@ export class ArtisListComponent implements OnInit, OnDestroy {
         })
     }
 
-    ngAfterViewInit(){
-        
-    }
+    
 
 }

@@ -18,7 +18,8 @@
                   <!-- <p>Artist: {{ar.namaArtis}}</p> -->
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button routerLink="/listlagu/{{g.idGenre}}" class="btn btn-sm btn-outline-secondary">Albums</button>
+                      <button routerLink="/listlagu/{{g.idGenre}}" class="btn btn-sm btn-outline-secondary">Lagu</button>
+                      <button (click)="deleteGenre(g.idGenre)" class="btn btn-sm btn-outline-secondary">Delete</button>
                     </div>
                     <small class="text-muted">9 mins</small>
                   </div>

@@ -71,7 +71,7 @@ import { AlbumsService } from './albums.service';
         this.addAlbumsForm.get('fotoCover').setValue(data.fotoCover);
         this.addAlbumsForm.get('keterangan').setValue(data.keterangan);
       }, error => {
-        alert('Data tidak ditemukan!');
+        console.log(error);
       });
     });
   }
