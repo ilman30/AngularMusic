@@ -34,7 +34,7 @@ import { AlbumsService } from './albums.service';
                 private router: Router) {
         
         this.addAlbumsForm = new FormGroup({
-        idAlbums: new FormControl(null,[Validators.required]),
+        idAlbum: new FormControl(null,[Validators.required]),
         namaAlbums: new FormControl(null,[Validators.required, Validators.minLength(4)]),
         idLabel: new FormControl(null,[Validators.required]),
         idArtis: new FormControl(null,[Validators.required]),
@@ -76,15 +76,14 @@ import { AlbumsService } from './albums.service';
     });
   }
 
-  simpanAlbums(): void{
-    this.upload();
+  simpanAlbums(namaFile): void{
     console.log(this.addAlbumsForm.value);
     let al = new Albums();
     al.idAlbum = this.addAlbumsForm.value.idAlbum;
     al.namaAlbums = this.addAlbumsForm.value.namaAlbums;  
     al.idLabel = this.addAlbumsForm.value.idLabel;
     al.idArtis = this.addAlbumsForm.value.idArtis;
-    al.fotoCover = this.addAlbumsForm.value.fotoCover;
+    al.fotoCover = namaFile;
     al.keterangan = this.addAlbumsForm.value.keterangan;
     this.albumsService.insertAlbums(al).subscribe((data) => {
       console.log(data);
@@ -100,12 +99,13 @@ import { AlbumsService } from './albums.service';
     this.progress = 0;
 
     this.currentFile = this.selectedFiles.item(0);
-    this.artisService.upload(this.currentFile).subscribe(
+    this.albumsService.upload(this.currentFile).subscribe(
       event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round( 100 * event.loaded / event.total);
         }else if (event instanceof HttpResponse) {
           console.log(event.body);
+          this.simpanAlbums(event.body.namaFile);
         }
       },
       err => {

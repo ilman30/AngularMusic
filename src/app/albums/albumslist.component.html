@@ -13,13 +13,13 @@
               <div class="card mb-4 shadow-sm">
                 <img src="/api/image2/{{al.fotoCover}}" alt="" height="200px">
                 <div class="card-body">
-                  <b class="card-text">{{al.namaAlbums}}</b><br>
-                  <b class="card-text">{{al.fotoCover}}</b>
+                  <b class="card-text">{{al.namaAlbums}}</b>
                   <br>
                   <p>Artist: {{al.namaArtis}}</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button routerLink="/listlagu/{{al.idAlbum}}" class="btn btn-sm btn-outline-secondary">Albums</button>
+                      <button (click)="deleteAlbums(al.idAlbum)" class="btn btn-sm btn-outline-secondary">Delete</button>
                     </div>
                     <small class="text-muted">9 mins</small>
                   </div>

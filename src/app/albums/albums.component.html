@@ -2,11 +2,11 @@
 <div class="row">
     <div class="col-md-12">
         <section class="my-5">
-            <form [formGroup]="addAlbumsForm" (ngSubmit)="simpanAlbums()">
+            <form [formGroup]="addAlbumsForm" (ngSubmit)="upload()">
                 <div class="form-group">
                     <label for="kode">ID Albums :</label>
-                    <input type="text" class="form-control" id="id" formControlName="idAlbums" placeholder="ID">
-                    <span *ngIf="!addAlbumsForm.get('idAlbums').valid && addAlbumsForm.get('idAlbums').touched" class="help-block">
+                    <input type="text" class="form-control" id="id" formControlName="idAlbum" placeholder="ID">
+                    <span *ngIf="!addAlbumsForm.get('idAlbum').valid && addAlbumsForm.get('idAlbum').touched" class="help-block">
                     ID Wajib Diisi
                     </span>
                 </div>

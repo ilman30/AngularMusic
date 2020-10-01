@@ -17,6 +17,9 @@ import { AlbumsListComponent } from './albums/albumslist.component';
 import { LaguListComponent } from './lagu/lagulist.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { LaguComponent } from './lagu/lagu.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './authGuard.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { LaguComponent } from './lagu/lagu.component';
     AlbumsComponent,
     AlbumsListComponent,
     LaguComponent,
-    LaguListComponent
+    LaguListComponent,
+    LoginComponent
 
   ],
   imports: [
@@ -42,7 +46,7 @@ import { LaguComponent } from './lagu/lagu.component';
     HttpClientModule,
     DataTablesModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

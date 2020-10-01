@@ -64,4 +64,9 @@ export class AlbumsService{
 
         return this.httpKlien.request(req);
     }
+
+    deleteAlbums(id): Observable<any>{
+        return this.httpKlien.delete(environment.baseUrl + '/deleteAlbums/'+id)
+        .pipe(map(data => data))
+    }
 }

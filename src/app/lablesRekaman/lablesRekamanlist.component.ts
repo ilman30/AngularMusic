@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
+import { LablesRekaman } from './lablesRekaman';
 import { LablesRekamanService } from "./lablesRekaman.service";
 
 @Component({
@@ -17,6 +19,7 @@ export class LablesRekamanListComponent implements OnInit, OnDestroy {
     dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
     cariForm: FormGroup;
+    listLables: LablesRekaman[];
 
     constructor(private lablesRekamanService: LablesRekamanService){
 
@@ -28,52 +31,12 @@ export class LablesRekamanListComponent implements OnInit, OnDestroy {
         this.cariForm = new FormGroup({
             namaLabels: new FormControl('')
         })
-        const that = this;
-        this.dtOptions = {
-            ajax: (dataTablesParameters: any, callback) => {
-                const parameter = new Map<string, any>();
-                parameter.set('namaLabels', this.cariForm.controls.namaLabels.value);
-                that.lablesRekamanService.getListLablesRekamanAll(parameter, dataTablesParameters).subscribe(resp => {
-                    callback({
-                        recordsTotal: resp.recordsTotal,
-                        recordsFiltered: resp.recordsFiltered,
-                        data: resp.data,
-                        draw: resp.draw
-                    });
-                });
-            },
-            serverSide: true,
-            processing: true,
-            filter: false,
-            columns: [{
-                title: 'ID',
-                data: 'idLabel',
-            }, {
-                title: 'Name',
-                data: 'namaLabels'
-            }, {
-                title: 'Alamat',
-                data: 'alamat'
-            }, {
-                title: 'Nomor Telepom',
-                data: 'noTelp'
-            }, {
-                title: 'Contact Person',
-                data: 'contactPerson'
-            }, {
-                title: 'URL Website',
-                data: 'urlWebsite'
-            }, {
-                title: 'Action',
-                render(data, type, row){
-                    return '<a hrev="editmethod/${row.idLabel}" class="btn btn-warning btn-xs edit" data-element-id="${row.idLabel}"><i>Edit</i></a>';
-                }
-            }],
-            rowCallback(row, data, dataIndex){
-                const idx = ((this.api().page()) * this.api().page.len()) + dataIndex + 1;
-                $('td:eq(0)', row).html('<b>' + idx + '</b>');
-            }
-        };
+        this.lablesRekamanService.listLablesRekaman().subscribe((data)=>{
+            console.log(data);
+            this.listLables=data;
+            }, error => {
+                console.log(error);
+            })
     }
 
     ngOnDestroy(): void{
@@ -89,6 +52,39 @@ export class LablesRekamanListComponent implements OnInit, OnDestroy {
     ngAfterViewInit(){
         
     }
+
+    deleteLables(id : number) {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false,
+        });
+        swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: 'You want to remove the Catalog!',
+          icon: 'warning',
+          // type: 'warning'
+          showCancelButton: true,
+          showCloseButton: true,
+          confirmButtonText: 'Yes, delete!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+        console.log(`Delete Data By Id:` + id );
+            if (result.value) {
+                this.lablesRekamanService.deleteLables(id).subscribe(data => {
+                    console.log(data);
+                    this.refresh();
+                });
+            }
+        });
+      }
+
+      refresh(): void {
+        window.location.reload();
+      }
 
 
     

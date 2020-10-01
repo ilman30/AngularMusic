@@ -68,4 +68,9 @@ export class LaguService{
         return this.httpKlien.request(req);
     }
 
+    deleteLagu(id): Observable<any>{
+        return this.httpKlien.delete(environment.baseUrl + '/deleteLagu/'+id)
+        .pipe(map(data => data))
+    }
+
 }

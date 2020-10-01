@@ -58,6 +58,9 @@ export class ArtisService{
         return this.httpKlien.request(req);
     }
 
-    
+    deleteArtis(id): Observable<any>{
+        return this.httpKlien.delete(environment.baseUrl + '/deleteArtis/'+id)
+        .pipe(map(data => data))
+    }
 
 }

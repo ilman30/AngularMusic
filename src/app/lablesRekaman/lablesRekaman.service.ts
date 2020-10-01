@@ -22,6 +22,7 @@ export class LablesRekamanService{
         return this.httpKlien.get(environment.baseUrl +'/listlablesjson')
         .pipe(map(data => <LablesRekaman[]> data));
     }
+    
 
     getLablesRekamanById(id): Observable<LablesRekaman> {
         return this.httpKlien.get(environment.baseUrl +'/listlablesjson/'+id)
@@ -56,4 +57,9 @@ export class LablesRekamanService{
 
     //     return this.httpKlien.request(req);
     // }
+
+    deleteLables(id): Observable<any>{
+        return this.httpKlien.delete(environment.baseUrl + '/deleteLables/'+id)
+        .pipe(map(data => data))
+    }
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Albums } from '../albums/albums';
 import { AlbumsService } from '../albums/albums.service';
 import { Genre } from '../genre/genre';
@@ -54,9 +55,9 @@ export class LaguListComponent implements OnInit, OnDestroy {
             ids: new FormControl('')
         });
 
-        this.formGenre = new FormGroup( {
-            idx: new FormControl('')
-        });
+        // this.formGenre = new FormGroup( {
+        //     idx: new FormControl('')
+        // });
 
         this.albumsService.listAlbums().subscribe((data)=>{
             console.log(data);
@@ -64,12 +65,12 @@ export class LaguListComponent implements OnInit, OnDestroy {
         }, error => {
             console.log(error);
         })
-        this.genreService.listGenre().subscribe((data)=>{
-            console.log(data);
-            this.listGenre=data;
-        }, error => {
-            console.log(error);
-        })
+        // this.genreService.listGenre().subscribe((data)=>{
+        //     console.log(data);
+        //     this.listGenre=data;
+        // }, error => {
+        //     console.log(error);
+        // })
         this.activateRoute.params.subscribe( rute => {
         this.ids = rute.ids;
         this.laguService.getLaguByAlbums(this.ids).subscribe( data => {
@@ -79,14 +80,14 @@ export class LaguListComponent implements OnInit, OnDestroy {
          });
         });
 
-        this.activateRoute.params.subscribe( rute => {
-            this.idx = rute.idx;
-            this.laguService.getLaguByGenre(this.idx).subscribe( data => {
-            this.listLagu = data;
-            }, error => {
-                console.log(error);
-             });
-            });
+        // this.activateRoute.params.subscribe( rute => {
+        //     this.idx = rute.idx;
+        //     this.laguService.getLaguByGenre(this.idx).subscribe( data => {
+        //     this.listLagu = data;
+        //     }, error => {
+        //         console.log(error);
+        //      });
+        //     });
     }
     ngOnDestroy(): void{
         this.dtTrigger.unsubscribe();
@@ -99,10 +100,43 @@ export class LaguListComponent implements OnInit, OnDestroy {
         })
       }
     
-    ambilLagu2(): void{
-        const idGenre = this.form.get("idGenre").value;
-        this.laguService.getLaguByAlbums(idGenre).subscribe( data => {
-            this.listLagu = data;
-        })
-    }
+    // ambilLagu2(): void{
+    //     const idGenre = this.form.get("idGenre").value;
+    //     this.laguService.getLaguByAlbums(idGenre).subscribe( data => {
+    //         this.listLagu = data;
+    //     })
+    // }
+
+    deleteLagu(id : number) {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false,
+        });
+        swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: 'You want to remove the Catalog!',
+          icon: 'warning',
+          // type: 'warning'
+          showCancelButton: true,
+          showCloseButton: true,
+          confirmButtonText: 'Yes, delete!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+        console.log(`Delete Data By Id:` + id );
+            if (result.value) {
+                this.laguService.deleteLagu(id).subscribe(data => {
+                    console.log(data);
+                    this.refresh();
+                });
+            }
+        });
+      }
+
+      refresh(): void {
+        window.location.reload();
+      }
 }

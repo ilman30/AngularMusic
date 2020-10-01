@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Artis } from '../artis/artis';
 import { ArtisService } from '../artis/artis.service';
 import { Albums } from './albums';
@@ -77,6 +78,39 @@ export class AlbumsListComponent implements OnInit, OnDestroy {
         this.albumsService.getAlbumsByArtis(idArtis).subscribe( data => {
           this.listAlbums = data;
         })
+      }
+
+      deleteAlbums(id : number) {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false,
+        });
+        swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: 'You want to remove the Catalog!',
+          icon: 'warning',
+          // type: 'warning'
+          showCancelButton: true,
+          showCloseButton: true,
+          confirmButtonText: 'Yes, delete!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+        console.log(`Delete Data By Id:` + id );
+            if (result.value) {
+                this.albumsService.deleteAlbums(id).subscribe(data => {
+                    console.log(data);
+                    this.refresh();
+                });
+            }
+        });
+      }
+
+      refresh(): void {
+        window.location.reload();
       }
 
 

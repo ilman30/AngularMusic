@@ -4,6 +4,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { AlbumsListComponent } from './albums/albumslist.component';
 import { ArtisComponent } from './artis/artis.component';
 import { ArtisListComponent } from './artis/artislist.component';
+import { AuthGuardService } from './authGuard.service';
 import { GenreComponent } from './genre/genre.component';
 import { GenreListComponent } from './genre/genrelist.component';
 import { HomeComponent } from './home/home.component';
@@ -11,10 +12,12 @@ import { LablesRekamanComponent } from './lablesRekaman/lablesRekaman.component'
 import { LablesRekamanListComponent } from './lablesRekaman/lablesRekamanlist.component';
 import { LaguComponent } from './lagu/lagu.component';
 import { LaguListComponent } from './lagu/lagulist.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
 
-  {path:"beranda",component:HomeComponent},
+  {path:"login",component:LoginComponent},
+  {path:"beranda",canActivate:[AuthGuardService], component:HomeComponent},
   {path:"addlables",component:LablesRekamanComponent},
   {path:"listlables",component:LablesRekamanListComponent},
   {path:"addartis",component:ArtisComponent},
