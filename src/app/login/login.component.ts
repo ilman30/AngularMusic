@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit{
     }
 
     onLogin(username: HTMLInputElement, password: HTMLInputElement){
-        // console.log(username.value);
         this.authService.login(username.value, password.value);
     }
 
