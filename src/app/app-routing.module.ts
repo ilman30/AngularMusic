@@ -16,8 +16,9 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
 
+  {path:"",redirectTo:"/login", pathMatch:"full"},
   {path:"login",component:LoginComponent},
-  {path:"beranda",canActivate:[AuthGuardService], component:HomeComponent},
+  {path:"beranda",canActivate:[AuthGuardService], data:{allowedRoles: ['role_admin']}, component:HomeComponent},
   {path:"addlables",component:LablesRekamanComponent},
   {path:"listlables",component:LablesRekamanListComponent},
   {path:"addartis",component:ArtisComponent},
