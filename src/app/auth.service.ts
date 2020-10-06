@@ -29,12 +29,10 @@ export class AuthService {
         ).pipe(map(data => data as StatusLogin))
         .subscribe( data => {
             this.isLogin = data.isValid;
-            console.log(data);
             if(this.isLogin){
                 localStorage.setItem('isLogin', 'Y');
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('username', username);
-                console.log(data);
                 this.router.navigate(['/beranda']);
             }
         });
@@ -59,12 +57,15 @@ export class AuthService {
         const token = localStorage.getItem('token');
         let isLanjut = false;
         if(username != null){
+            console.log(allowedRoles);
             const userAdmin = new UserAdmin();
             userAdmin.username = username;
             userAdmin.token = token;
             this.httpKlien.post(environment.baseUrl + '/ceklogin', userAdmin
             ).pipe(map(data => data as StatusLogin)).subscribe(data => {
+            console.log(data);
             isLanjut = (data.roles != null && allowedRoles.some(r => data.roles.includes(r)) && data.isValid);
+            console.log(isLanjut);
             return isLanjut; 
             });
             
