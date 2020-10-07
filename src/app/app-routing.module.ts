@@ -16,22 +16,99 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
 
-  {path:"",redirectTo:"/login", pathMatch:"full"},
-  {path:"login",component:LoginComponent},
-  {path:"beranda",canActivate:[AuthGuardService], data:{allowedRoles: ['role_admin']}, component:HomeComponent},
-  {path:"addlables",component:LablesRekamanComponent},
-  {path:"listlables",component:LablesRekamanListComponent},
-  {path:"addartis",component:ArtisComponent},
-  {path:"listartis",component:ArtisListComponent},
-  {path:"addgenre",component:GenreComponent},
-  {path:"listgenre",component:GenreListComponent},
-  {path:"addalbums",component:AlbumsComponent},
-  {path:"listalbums",component:AlbumsListComponent},
-  {path:"listalbums/:ids",component:AlbumsListComponent},
-  {path:"addlagu",component:LaguComponent},
-  {path:"listlagu",component:LaguListComponent},
-  {path:"listlagu/:ids",component:LaguListComponent},
-  {path:"listlagu/:idx",component:LaguListComponent}
+  { 
+    path:"",
+    redirectTo:"/login", 
+    pathMatch:"full"
+  },
+
+  {
+    path:"login",
+    component:LoginComponent
+  },
+
+  {
+    path:"beranda",
+    canActivate:[AuthGuardService], 
+    data:{allowedRoles: ['role_admin']}, 
+    component:HomeComponent
+  },
+
+  {
+    path:"addlables",
+    canActivate:[AuthGuardService], 
+    data:{allowedRoles: ['role_admin']}, 
+    component:LablesRekamanComponent
+  },
+
+  {
+    path:"listlables",
+    component:LablesRekamanListComponent
+  },
+
+  {
+    path:"addartis",
+    canActivate:[AuthGuardService], 
+    data:{allowedRoles: ['role_admin']}, 
+    component:ArtisComponent
+  },
+
+  {
+    path:"listartis",
+    component:ArtisListComponent
+  },
+
+  {
+    path:"addgenre",
+    canActivate:[AuthGuardService], 
+    data:{allowedRoles: ['role_admin']}, 
+    component:GenreComponent
+  },
+
+  {
+    path:"listgenre",
+    component:GenreListComponent
+  },
+
+  {
+    path:"addalbums",
+    canActivate:[AuthGuardService], 
+    data:{allowedRoles: ['role_admin']}, 
+    component:AlbumsComponent
+  },
+
+  {
+    path:"listalbums",
+    component:AlbumsListComponent
+  },
+
+  {
+    path:"listalbums/:ids",
+    component:AlbumsListComponent
+  },
+
+  {
+    path:"addlagu",
+    canActivate:[AuthGuardService], 
+    data:{allowedRoles: ['role_admin']}, 
+    component:LaguComponent
+  },
+
+  {
+    path:"listlagu",
+    component:LaguListComponent
+  },
+
+  {
+    path:"listlagu/:ids",
+    component:LaguListComponent
+  },
+
+  {
+    path:"listlagu/:idx",
+    component:LaguListComponent
+  }
+  
 ];
 
 @NgModule({

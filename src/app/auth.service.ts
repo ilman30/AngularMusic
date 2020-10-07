@@ -52,27 +52,19 @@ export class AuthService {
         return statusLogin;
     }
 
-    isAuthorized(allowedRoles: string[]): boolean{
+    isAuthorized(allowedRoles: string[]): Observable<StatusLogin> {
         const username = localStorage.getItem('username');
         const token = localStorage.getItem('token');
-        let isLanjut = false;
-        if(username != null){
+        if(username != null && token != null) {
             console.log(allowedRoles);
             const userAdmin = new UserAdmin();
             userAdmin.username = username;
             userAdmin.token = token;
-            this.httpKlien.post(environment.baseUrl + '/ceklogin', userAdmin
-            ).pipe(map(data => data as StatusLogin)).subscribe(data => {
-            console.log(data);
-            isLanjut = (data.roles != null && allowedRoles.some(r => data.roles.includes(r)) && data.isValid);
-            console.log(isLanjut);
-            return isLanjut; 
-            });
-            
-        }else{
-            this.router.navigate(['/login']);
+            return this.httpKlien.post(environment.baseUrl + '/ceklogin', userAdmin
+            ).pipe(map( data => data as StatusLogin));
+        } else {
+            this.router.navigate(['login']);
         }
-        return isLanjut;
     }
 
     logout(){
