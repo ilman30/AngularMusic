@@ -85,8 +85,7 @@ import { LaguService } from './lagu.service';
     });
   }
 
-    simpanLagu(): void{
-        this.upload();
+    simpanLagu(namaFile): void{
         console.log(this.addLaguForm.value);
         let la = new Lagu();
         la.idLagu = this.addLaguForm.value.idLagu;
@@ -95,7 +94,7 @@ import { LaguService } from './lagu.service';
         la.idGenre = this.addLaguForm.value.idGenre;
         la.idArtis = this.addLaguForm.value.idArtis;
         la.idAlbum = this.addLaguForm.value.idAlbum;
-        la.fileLagu = this.addLaguForm.value.fileLagu;
+        la.fileLagu = namaFile;
         this.laguService.insertLagu(la).subscribe((data) => {
             console.log(data);
             this.router.navigate(['/listlagu']);
@@ -107,24 +106,25 @@ import { LaguService } from './lagu.service';
     }
 
     upload() {
-        this.progress = 0;
-
-        this.currentFile = this.selectedFiles.item(0);
-        this.artisService.upload(this.currentFile).subscribe(
+      this.progress = 0;
+  
+      this.currentFile = this.selectedFiles.item(0);
+      this.albumsService.upload(this.currentFile).subscribe(
         event => {
-            if (event.type === HttpEventType.UploadProgress) {
+          if (event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round( 100 * event.loaded / event.total);
-            }else if (event instanceof HttpResponse) {
+          }else if (event instanceof HttpResponse) {
             console.log(event.body);
-            }
+            this.simpanLagu(event.body.namaFile);
+          }
         },
         err => {
-            this.progress = 0;
-            alert('Could not upload the file!');
-            this.currentFile = undefined;
+          this.progress = 0;
+          alert('Could not upload the file!');
+          this.currentFile = undefined;
         });
-
-        this.selectedFiles = undefined;
+  
+      this.selectedFiles = undefined;
     }
 
   }

@@ -12,16 +12,16 @@ export class AuthGuardService implements CanActivate{
     }
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-        Observable<boolean> | Promise<boolean> | boolean {
-            const allowedRoles = next.data.allowedRoles;
-            //console.log(this.authService.isAuthorized(allowedRoles));
-            return this.authService.isAuthorized(allowedRoles)
-            .pipe(map(data => {
-                if(data.roles != null && allowedRoles.some(r => data.roles.includes(r)) && data.isValid){
-                    return true;
-                }else{
-                    this.router.navigate(['login'])
-                }
-            }))
+    Observable<boolean> | Promise<boolean> | boolean {
+        const allowedRoles = next.data.allowedRoles;
+        //console.log(this.authService.isAuthorized(allowedRoles));
+        return this.authService.isAuthorized(allowedRoles)
+        .pipe(map(data => {
+            if(data.roles != null && allowedRoles.some(r => data.roles.includes(r)) && data.isValid){
+                return true;
+            }else{
+                this.router.navigate(['login'])
+            }
+        }))
     }
 }

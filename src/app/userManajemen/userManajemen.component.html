@@ -1,0 +1,24 @@
+<br><br>
+<div class="row">
+    <div class="col-md-12">
+        <section class="my-5">
+            <form [formGroup]="registerAkunForm" (ngSubmit)="registerAdmin()">
+                <div class="form-group">
+                    <label for="kode">Username :</label>
+                    <input type="text" class="form-control" id="username" formControlName="username" placeholder="ID">
+                    <span *ngIf="!registerAkunForm.get('username').valid && registerAkunForm.get('username').touched" class="help-block">
+                    Username Wajib Diisi
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="kode">Password :</label>
+                    <input type="password" class="form-control" id="password" formControlName="keyword" placeholder="Nama Albums">
+                    <span *ngIf="!registerAkunForm.get('keyword').valid && registerAkunForm.get('keyword').touched" class="help-block">
+                    Password Wajib Diisi
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </section>
+    </div>
+</div>

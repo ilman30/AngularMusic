@@ -20,6 +20,9 @@ import { LaguComponent } from './lagu/lagu.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './authGuard.service';
+import { AkunAdminComponent } from './akunAdmin/akunAdmin.component';
+import { UserManajemenComponent } from './userManajemen/userManajemen.component';
+import { UserManajemenListComponent } from './userManajemen/userManajemenlist.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { AuthGuardService } from './authGuard.service';
     AlbumsListComponent,
     LaguComponent,
     LaguListComponent,
-    LoginComponent
+    LoginComponent,
+    AkunAdminComponent,
+    UserManajemenComponent,
+    UserManajemenListComponent
 
   ],
   imports: [

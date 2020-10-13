@@ -76,16 +76,18 @@ import { AlbumsService } from './albums.service';
     });
   }
 
-  simpanAlbums(namaFile): void{
+  simpanAlbums(namaFile): void {
+      
     console.log(this.addAlbumsForm.value);
-    let al = new Albums();
-    al.idAlbum = this.addAlbumsForm.value.idAlbum;
-    al.namaAlbums = this.addAlbumsForm.value.namaAlbums;  
-    al.idLabel = this.addAlbumsForm.value.idLabel;
-    al.idArtis = this.addAlbumsForm.value.idArtis;
-    al.fotoCover = namaFile;
-    al.keterangan = this.addAlbumsForm.value.keterangan;
-    this.albumsService.insertAlbums(al).subscribe((data) => {
+    let albm = new Albums();
+    albm.idAlbum = this.addAlbumsForm.value.idAlbum;
+    albm.namaAlbums = this.addAlbumsForm.value.namaAlbums;
+    albm.idLabel = this.addAlbumsForm.value.idLabel;
+    albm.idArtis = this.addAlbumsForm.value.idArtis;
+    albm.fotoCover = namaFile;
+    albm.keterangan = this.addAlbumsForm.value.keterangan;
+    this.albumsService.insertAlbums(albm).subscribe((data) => {
+      
       console.log(data);
       this.router.navigate(['/listalbums']);
     });

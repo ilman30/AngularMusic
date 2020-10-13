@@ -1,0 +1,26 @@
+<br><br>
+<div class="row">
+    <div class="col-md-12">
+        <section class="my-5">
+            <h3>Daftar Akun</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <table border="1" class="cards table table-sm table-hover"
+                    style="width: 100%">
+                        <tr>
+                            <th>Nama User</th>
+                            <th *ngFor="let roles of listRoles">{{roles.namaRole}}</th> 
+                        </tr>
+                        <tr *ngFor="let user of listAkun">
+                            <td>{{user.username}}</td>
+                            <td><input type="checkbox" checked="true"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

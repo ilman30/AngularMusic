@@ -48,7 +48,7 @@ export class ArtisService{
     upload(file: File): Observable<HttpEvent<any>> {
         const formData: FormData = new FormData();
 
-        formData.append('file', file);
+        // formData.append('file', file);
 
         const req = new HttpRequest('POST', environment.baseUrl + '/uploadartis', formData, {
             reportProgress: true,
