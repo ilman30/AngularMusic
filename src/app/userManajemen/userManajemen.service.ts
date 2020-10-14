@@ -37,21 +37,23 @@ export class UserManajemenService {
     .pipe(map(data=> <Roles[]>data));
   }
 
-  // getListAkunAll(parameter: Map<string, any>, dataTablesParameters: any): Observable<DataTablesResponse> {
-  //   const dtReq = new DataTablesRequest();
-  //   dtReq.draw = dataTablesParameters.draw;
-  //   dtReq.length = dataTablesParameters.length;
-  //   dtReq.start = dataTablesParameters.start;
-  //   dtReq.sortCol = dataTablesParameters.order[0].column;
-  //   dtReq.sortDir = dataTablesParameters.order[0].dir;
-  //   dtReq.extraParam = {};
+  checkingSuperAdmin(idUser : string): boolean{
+    let isChecked = false;
+    if(idUser != null){
+      this.httpKlien.post(environment.baseUrl + '/checkingsuperadmin', idUser
+      ).pipe(map(data => data as boolean)).subscribe(data => {
+       if(data = true){
+        isChecked = data;
+        console.log(isChecked);
+        return isChecked;
+       }
+      });
+    } else{
+      isChecked = false;
+    }
+    return isChecked;
+  }
 
-  //   parameter.forEach((value, key) => {
-  //       dtReq.extraParam[key] = value;
-  //   });
-  //   return this.httpKlien.post(environment.baseUrl + '/listakundatajson', dtReq
-  //   ).pipe(map(data => data as DataTablesResponse));
-  // }
 
   
 }

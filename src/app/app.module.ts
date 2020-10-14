@@ -23,6 +23,7 @@ import { AuthGuardService } from './authGuard.service';
 import { AkunAdminComponent } from './akunAdmin/akunAdmin.component';
 import { UserManajemenComponent } from './userManajemen/userManajemen.component';
 import { UserManajemenListComponent } from './userManajemen/userManajemenlist.component';
+import { UserManajemenDetailComponent } from './userManajemen/userManajemenDetail.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UserManajemenListComponent } from './userManajemen/userManajemenlist.co
     LoginComponent,
     AkunAdminComponent,
     UserManajemenComponent,
-    UserManajemenListComponent
+    UserManajemenListComponent,
+    UserManajemenDetailComponent
 
   ],
   imports: [

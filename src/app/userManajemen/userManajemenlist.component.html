@@ -13,10 +13,7 @@
                         </tr>
                         <tr *ngFor="let user of listAkun">
                             <td>{{user.username}}</td>
-                            <td><input type="checkbox" checked="true"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
+                            <td><a href="/usermanajemendetail/{{user.id}}">Edit</a></td>
                         </tr>
                     </table>
                 </div>
