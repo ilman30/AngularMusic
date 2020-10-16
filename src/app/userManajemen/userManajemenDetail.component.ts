@@ -43,7 +43,7 @@ import { UserManajemenService } from './userManajemen.service';
             this.akunAdmin = data;
             console.log(data)
           }, error => {
-            console.log(error);
+            alert("error");
           })
         })
     }
@@ -61,7 +61,7 @@ import { UserManajemenService } from './userManajemen.service';
         if(data.isCheck != false){
           return true;
         } else{
-          console.log("error");
+          alert("error");
         }
       }))
     }
