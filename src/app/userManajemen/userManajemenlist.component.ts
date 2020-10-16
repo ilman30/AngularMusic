@@ -26,10 +26,6 @@ export class UserManajemenListComponent implements OnInit {
 
     }
 
-    check(idUser : string): boolean{
-        return this.userManajemenService.checkingSuperAdmin(idUser);
-    }
-
     ngOnInit(): void{
         this.cariForm = new FormGroup({
             username: new FormControl('')

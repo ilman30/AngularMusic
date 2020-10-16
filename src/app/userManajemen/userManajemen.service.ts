@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AkunAdmin } from '../akunAdmin/akunAdmin';
-import { DataTablesRequest } from '../model/datatablesrequest.model';
-import { DataTablesResponse } from '../model/datatablesresponse.model';
+import { GroupUser } from '../model/GroipUser';
 import { Roles } from '../model/roles';
 
 @Injectable({
@@ -16,20 +15,15 @@ export class UserManajemenService {
   constructor(private httpKlien: HttpClient) { 
     
   }
-
-  registerAdmin(akunAdmin: AkunAdmin): Observable<any> {
-    return this.httpKlien.post(environment.baseUrl +'/registeradmin' , akunAdmin)
-    .pipe(map(data => data));
-  }
-
+  
   listAkun(): Observable<AkunAdmin[]>{
     return this.httpKlien.get(environment.baseUrl + '/listakunjson')
     .pipe(map(data=> <AkunAdmin[]>data));
   }
 
-  getAkunById(id): Observable<AkunAdmin>{
+  getAkunById(id : String): Observable<AkunAdmin[]>{
     return this.httpKlien.get(environment.baseUrl + '/listakunjson/'+id)
-      .pipe(map(data=> data as AkunAdmin));
+      .pipe(map(data=> data as AkunAdmin[]));
   }
 
   listRoles(): Observable<Roles[]>{
@@ -37,21 +31,13 @@ export class UserManajemenService {
     .pipe(map(data=> <Roles[]>data));
   }
 
-  checkingSuperAdmin(idUser : string): boolean{
-    let isChecked = false;
+  checkingSuperAdmin(idUser : string): Observable<GroupUser>{
     if(idUser != null){
-      this.httpKlien.post(environment.baseUrl + '/checkingsuperadmin', idUser
-      ).pipe(map(data => data as boolean)).subscribe(data => {
-       if(data = true){
-        isChecked = data;
-        console.log(isChecked);
-        return isChecked;
-       }
-      });
+      return this.httpKlien.post(environment.baseUrl + '/checkingsuperadmin', idUser
+      ).pipe(map( data => data as GroupUser));
     } else{
-      isChecked = false;
+      console.error('error')
     }
-    return isChecked;
   }
 
 

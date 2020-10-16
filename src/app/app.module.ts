@@ -20,10 +20,10 @@ import { LaguComponent } from './lagu/lagu.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './authGuard.service';
-import { AkunAdminComponent } from './akunAdmin/akunAdmin.component';
 import { UserManajemenComponent } from './userManajemen/userManajemen.component';
 import { UserManajemenListComponent } from './userManajemen/userManajemenlist.component';
 import { UserManajemenDetailComponent } from './userManajemen/userManajemenDetail.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { UserManajemenDetailComponent } from './userManajemen/userManajemenDetai
     LaguComponent,
     LaguListComponent,
     LoginComponent,
-    AkunAdminComponent,
+    RegisterComponent,
     UserManajemenComponent,
     UserManajemenListComponent,
     UserManajemenDetailComponent

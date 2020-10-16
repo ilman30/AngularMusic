@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AkunAdmin } from '../akunAdmin/akunAdmin';
+import { Roles } from '../model/roles';
 import { UserManajemenService } from './userManajemen.service';
 
 @Component({
@@ -11,31 +15,55 @@ import { UserManajemenService } from './userManajemen.service';
 
   export class UserManajemenDetailComponent implements OnInit {
 
-    id: String;
+    
+    akunAdmin: AkunAdmin[];
+    listRole : Roles[];
+    id: string;
     detailAkunForm: FormGroup;
     constructor(private userManajemenService: UserManajemenService, 
                 private router: Router, 
                 private route: ActivatedRoute) { 
-
-        this.detailAkunForm = new FormGroup({
-            id: new FormControl(null),
-            username: new FormControl(null)
-        })
-
     }
 
     ngOnInit(): void {
-        this.route.params.subscribe(rute => {
+        this.detailAkunForm = new FormGroup({
+          id: new FormControl('')
+        }); 
+
+        this.userManajemenService.listRoles().subscribe((data) => {
+          this.listRole = data
+          console.log(data)
+        }, error =>{
+          console.log(error)
+        })
+
+        this.route.params.subscribe( rute => {
           this.id = rute.id;
-          if (this.id) {
-            this.userManajemenService.getAkunById(this.id).subscribe( data => {
-              this.detailAkunForm.get('id').setValue(data.id);
-              this.detailAkunForm.get('username').setValue(data.username);
-            }, error => {
-              alert("Data Tidak Ditemukan !");
-            });
-          }
-        });
-      }
+          this.userManajemenService.getAkunById(this.id).subscribe( data => {
+            this.akunAdmin = data;
+            console.log(data)
+          }, error => {
+            console.log(error);
+          })
+        })
+    }
+
+    ambilAkun(): void{
+      const id = this.detailAkunForm.get("id").value;
+      this.userManajemenService.getAkunById(id).subscribe( data => {
+        this.akunAdmin = data;
+      })
+    }
+
+    check(id : string): Observable<boolean> | Promise<boolean> | boolean {
+      return this.userManajemenService.checkingSuperAdmin(id)
+      .pipe(map(data =>{
+        if(data.isCheck != false){
+          return true;
+        } else{
+          console.log("error");
+        }
+      }))
+    }
 
   }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AkunAdminComponent } from './akunAdmin/akunAdmin.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { AlbumsListComponent } from './albums/albumslist.component';
 import { ArtisComponent } from './artis/artis.component';
@@ -14,6 +13,7 @@ import { LablesRekamanListComponent } from './lablesRekaman/lablesRekamanlist.co
 import { LaguComponent } from './lagu/lagu.component';
 import { LaguListComponent } from './lagu/lagulist.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { UserManajemenComponent } from './userManajemen/userManajemen.component';
 import { UserManajemenDetailComponent } from './userManajemen/userManajemenDetail.component';
 import { UserManajemenListComponent } from './userManajemen/userManajemenlist.component';
@@ -28,7 +28,7 @@ const routes: Routes = [
 
   {
     path:"register",
-    component:AkunAdminComponent
+    component:RegisterComponent
   },
 
 
